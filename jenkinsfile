@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    tools {
+
+        jdk 'JDK17'
+        maven 'M2_HOME'
+    }
+
+    stages {
+        stage('GIT') {
+            steps {
+                git branch: 'master',
+                url: 'https://github.com/saadallahchaima/timesheet.git'
+            }
+        }
+
+        stage('Compile Stage') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+    }
+}
